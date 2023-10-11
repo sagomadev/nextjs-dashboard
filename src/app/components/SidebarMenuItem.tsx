@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface Props {
   path: string;
@@ -8,10 +11,13 @@ interface Props {
 }
 
 export const SidebarMenuItem = ({ path, icon, title, subTitle }: Props) => {
+  const currentPath = usePathname();
   return (
     <Link
       href={path}
-      className="w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-white/5 transition ease-linear duration-150"
+      className={`w-full px-2 inline-flex space-x-2 items-center border-b border-slate-700 py-3 hover:bg-white/5 transition ease-linear duration-150 ${
+        currentPath === path ? "bg-blue-800" : ""
+      }`}
     >
       <div>{icon}</div>
       <div className="flex flex-col">
