@@ -1,6 +1,11 @@
 import Image from "next/image";
 import { title } from "process";
-import { IoBrowsersOutline, IoCalculator, IoLogoReact } from "react-icons/io5";
+import {
+  IoBalloon,
+  IoBrowsersOutline,
+  IoCalculator,
+  IoLogoReact,
+} from "react-icons/io5";
 import { SidebarMenuItem } from "./SidebarMenuItem";
 
 const menuItems = [
@@ -15,6 +20,12 @@ const menuItems = [
     icon: <IoCalculator size={40} />,
     title: "Counter",
     subTitle: "Contador Client Size",
+  },
+  {
+    path: "/dashboard/pokemons",
+    icon: <IoBalloon size={40} />,
+    title: "Pokemons",
+    subTitle: "Generación Estática",
   },
 ];
 
