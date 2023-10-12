@@ -1,10 +1,15 @@
 "use client";
 import { useState } from "react";
 
-export const CartCounter = () => {
-  const [count, setCount] = useState(0);
+interface CartCounterProps {
+  initValue?: number;
+}
+
+export const CartCounter = ({ initValue = 0 }: CartCounterProps) => {
+  const [count, setCount] = useState(initValue);
 
   const handlerClickButton = (value: number) => {
+    if (count + value < 0) return;
     setCount(count + value);
   };
   return (
