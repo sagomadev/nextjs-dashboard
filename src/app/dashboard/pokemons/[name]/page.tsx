@@ -1,4 +1,4 @@
-import { Pokemon } from "@/pokemons";
+import { Pokemon, PokemonsResponse } from "@/pokemons";
 import { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -8,7 +8,17 @@ interface Props {
 }
 
 export async function generateStaticParams() {
-  return Array.from({ length: 151 }, (_, i) => ({ id: `${i + 1}` }));
+  const data: PokemonsResponse = await fetch(
+    "https://pokeapi.co/api/v2/pokemon?limit=151"
+  ).then((res) => res.json());
+
+  const pokemons = data.results.map((pokemon) => ({
+    name: pokemon.name,
+  }));
+
+  // throw new Error("Error de prueba");
+
+  return pokemons;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
