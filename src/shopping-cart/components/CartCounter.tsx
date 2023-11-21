@@ -1,4 +1,6 @@
 "use client";
+import { useAppDispatch, useAppSelector } from "@/store";
+import { addOne, substractOne } from "@/store/counter/counterSlice";
 import { useState } from "react";
 
 interface CartCounterProps {
@@ -6,25 +8,20 @@ interface CartCounterProps {
 }
 
 export const CartCounter = ({ initValue = 0 }: CartCounterProps) => {
-  const [count, setCount] = useState(initValue);
+  const count = useAppSelector((state) => state.counter.count);
+  const dispatch = useAppDispatch();
+  // const [count, setCount] = useState(initValue);
 
-  const handlerClickButton = (value: number) => {
-    if (count + value < 0) return;
-    setCount(count + value);
-  };
   return (
     <>
       <span className="text-9xl">{count}</span>
       <div className="flex">
-        <button
-          className="boton-generico"
-          onClick={() => handlerClickButton(1)}
-        >
+        <button className="boton-generico" onClick={() => dispatch(addOne())}>
           +1
         </button>
         <button
           className="boton-generico"
-          onClick={() => handlerClickButton(-1)}
+          onClick={() => dispatch(substractOne())}
         >
           -1
         </button>
