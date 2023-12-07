@@ -23,9 +23,13 @@ const counterSlice = createSlice({
       if (action.payload < 0) action.payload = 0;
       state.count = action.payload;
     },
+    initCounterState(state, action: PayloadAction<number>) {
+      state.count = action.payload;
+    },
   },
 });
 
-export const { addOne, substractOne, resetCounter } = counterSlice.actions;
+export const { addOne, substractOne, resetCounter, initCounterState } =
+  counterSlice.actions;
 
 export default counterSlice.reducer;
